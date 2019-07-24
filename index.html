@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+        </head>
+
+        <body>
+            <p id="estudiantes"></p>
+            <p id="notapromedio"></p>
+            <p id="notamayor"></p>
+            <p id="notamenor"></p>
+            <button onclick="mostrarestudiantes()">Mostrar Estudiantes</button>
+            <button onclick="mostrarnotapromedio()">Mostrar Nota Promedio</button>
+            <button onclick="mostrarnotamayor()">Mostrar Nota Mayor</button>
+            <button onclick="mostrarnotamenor()">Mostrar Nota Menor</button>
+            
+        </body>
+
+        <script>
+		            var estudiantes = [
+		    {
+		        "codigo": "001",
+		        "nombre": "Cristian Coronado",
+		        "nota": 4.7
+		    },
+		    {
+		        "codigo": "002",
+		        "nombre": "Paula Barón",
+		        "nota": 4.8
+		    },
+		    {
+		        "codigo": "003",
+		        "nombre": "Julio Mahecha",
+		        "nota": 4.7
+		    },
+		    {
+		        "codigo": "004",
+		        "nombre": "Mery Casallas",
+		        "nota": 4.3
+		    },
+		    {
+		        "codigo": "005",
+		        "nombre": "Germán Toca",
+		        "nota": 4.8
+		    },
+		    {
+		        "codigo": "006",
+		        "nombre": "William Casallas",
+		        "nota": 4.2
+		    },
+		    {
+		        "codigo": "007",
+		        "nombre": "Jaime Cifuentes",
+		        "nota": 4.3
+		    },
+		    {
+		        "codigo": "008",
+		        "nombre": "Consuelo Fonseca",
+		        "nota": 4.5
+		    },
+		    {
+		        "codigo": "009",
+		        "nombre": "Lucinio Figueredo",
+		        "nota": 4.4
+		    },
+		    {
+		        "codigo": "010",
+		        "nombre": "Carlos Sánchez",
+		        "nota": 4.5
+		    }
+		];
+
+		//----------------------------------------------------------------------------------------------------------------------------- 
+		        function leerJSON(json) {
+		            var out = "-------------------Estudiantes-------------------<br>";
+		            var i;
+		            for (i = 0; i < json.length; i++) {
+		                out += "Codigo:" + json[i].codigo + "-" + "Nombre:" + json[i].nombre + "-" + "Nota:" + json[i].nota + "<br>";
+		            }
+		            document.getElementById("estudiantes").innerHTML = out;
+		        }
+
+		        function mostrarestudiantes() {
+		            leerJSON(estudiantes);
+		        }
+		//----------------------------------------------------------------------------------------------------------------------------
+		        function calcularnotapromedio(){
+				    var sumanotas = 0.0;
+
+				    for(var i = 0; i < estudiantes.length; ++i){
+				        sumanotas += estudiantes[i].nota;
+				    }
+
+				    var promedio = (sumanotas/estudiantes.length).toFixed(2);
+
+				   	document.getElementById("notapromedio").innerHTML = "-----------------Nota Promedio-----------------<br>" + "Los estudiantes tienen la nota promedio: "+ promedio;
+				}
+
+				function mostrarnotapromedio() {
+		            calcularnotapromedio(estudiantes);
+		        }
+		//---------------------------------------------------------------------------------------------------------------------------
+		        function calcularnotamayor(){
+				    var indicenotamayor = 0;
+				    var notamayor = estudiantes[indicenotamayor].nota;
+
+				    for(var i = 1; i < estudiantes.length; ++i){
+				        if(estudiantes[i].nota > notamayor){
+				            notamayor = estudiantes[i].nota;
+				            indicenotamayor = i;
+				        }
+				    }
+
+				    document.getElementById("notamayor").innerHTML = "-----------------Nota Mayor-----------------<br>" + "El estudiante " + estudiantes[indicenotamayor].nombre + " tiene la nota mayor: " + notamayor;
+				}
+
+		        function mostrarnotamayor() {
+		            calcularnotamayor(estudiantes);
+		        }
+		//---------------------------------------------------------------------------------------------------------------------------
+				function calcularnotamenor(){
+				    var indicenotamenor = 0;
+				    var notamenor = estudiantes[indicenotamenor].nota;
+
+				    for(var i = 1; i < estudiantes.length; ++i){
+				        if(estudiantes[i].nota < notamenor){
+				            notamenor = estudiantes[i].nota;
+				            indicenotamenor = i;
+				        }
+				    }
+
+				    document.getElementById("notamenor").innerHTML = "-----------------Nota Menor-----------------<br>" + "El estudiante " + estudiantes[indicenotamenor].nombre + " tiene la nota menor: " + notamenor;
+				}
+
+				function mostrarnotamenor() {
+		            calcularnotamenor(estudiantes);
+		        }
+        </script>
+
+    </html>
